@@ -1,22 +1,16 @@
-# Node modules
 node_modules/
 
-# Bun lock (optional, commit only if needed)
 bun.lock
 
-# Build output (jika ada folder build/dist)
 dist/
 build/
 
-# Environment variables
 .env
 .env.local
 .env.*.local
 
-# Logs
 *.log
 
-# OS / editor files
 .DS_Store
 Thumbs.db
 .vscode/
