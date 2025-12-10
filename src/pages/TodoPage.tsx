@@ -4,8 +4,8 @@ import { z } from "zod";
 import Header from "../components/Header";
 import CategoryForm from "../components/CategoryForm";
 import CategoryGrid from "../components/CategoryGrid";
-import { useCategory } from "./../api/useCategory";
-import { useTodo } from "./../api/useTodo";
+import { useCategory } from "../api/useCategory";
+import { useTodo } from "../api/useTodo";
 
 interface TokenPayload {
   id: number;
@@ -35,21 +35,22 @@ const TodoPage = () => {
   const { newTodos, setNewTodos, addTodo, toggleTodoStatus, deleteTodo } =
     useTodo(categories, setCategories);
 
-  const [username, setUsername] = useState("");
-  const [darkMode, setDarkMode] = useState(true);
+  const [username, setUsername] = useState("Guest");
+  const [darkMode, setDarkMode] = useState(false);
   const [timeGreeting, setTimeGreeting] = useState("");
   const [categoryError, setCategoryError] = useState("");
-
-  // 🔥 state untuk paksa rerender input saat error muncul
   const [errorTrigger, setErrorTrigger] = useState(false);
 
+  // 🔥 Ambil token dan decode nama user
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       try {
         const decoded = jwtDecode<TokenPayload>(token);
         setUsername(decoded.name);
-      } catch {}
+      } catch (err) {
+        console.error("Invalid token", err);
+      }
     }
 
     const updateGreeting = () => {
@@ -79,8 +80,6 @@ const TodoPage = () => {
       setCategoryError(
         result.error.flatten().fieldErrors.name?.[0] || "Invalid category"
       );
-
-      // 🔥 paksa rerender input agar border merah muncul
       setErrorTrigger((prev) => !prev);
       return;
     }
@@ -88,8 +87,7 @@ const TodoPage = () => {
     addCategory();
     setNewCategory("");
     setCategoryError("");
-
-    setErrorTrigger((prev) => !prev); // reset
+    setErrorTrigger((prev) => !prev);
   };
 
   return (
@@ -102,6 +100,7 @@ const TodoPage = () => {
         color: darkMode ? "#fff" : "#333",
       }}
     >
+      {/* ✅ Header dengan Hallo, username! */}
       <Header
         username={username}
         timeGreeting={timeGreeting}
@@ -109,15 +108,17 @@ const TodoPage = () => {
         setDarkMode={setDarkMode}
       />
 
+      {/* Category Form */}
       <CategoryForm
         newCategory={newCategory}
         setNewCategory={setNewCategory}
         handleAddCategory={handleAddCategory}
         categoryError={categoryError}
         darkMode={darkMode}
-        errorTrigger={errorTrigger} // 🔥 pass trigger
+        errorTrigger={errorTrigger}
       />
 
+      {/* Category & Todo Grid */}
       <CategoryGrid
         categories={categories}
         toggleTodoStatus={toggleTodoStatus}

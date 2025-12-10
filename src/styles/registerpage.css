@@ -1,0 +1,216 @@
+/* Container & mode */
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f9fafb; /* light mode */
+  transition: background-color 0.3s;
+}
+
+.register-container.dark-mode {
+  background-color: #1f2937; /* dark mode */
+}
+
+/* Card */
+.register-card {
+  width: 100%;
+  max-width: 400px;
+  background-color: #ffffff; /* light mode */
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s;
+}
+
+.register-container.dark-mode .register-card {
+  background-color: #374151;
+}
+
+/* Heading */
+.register-card h1 {
+  text-align: center;
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #1f2937;
+}
+
+.register-container.dark-mode .register-card h1 {
+  color: #f3f4f6;
+}
+
+/* Subtitle */
+.register-card p {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+.register-container.dark-mode .register-card p {
+  color: #9ca3af;
+}
+
+/* Form */
+.register-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.register-card .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-card label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.register-container.dark-mode .register-card label {
+  color: #d1d5db;
+}
+
+.register-card input {
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  color: #111827;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.register-container.dark-mode .register-card input {
+  border-color: #4b5563;
+  background-color: #4b5563;
+  color: #f3f4f6;
+}
+
+.register-card input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.error-msg {
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Submit Button */
+.register-btn {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  margin-top: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.2s;
+}
+
+.register-btn:hover {
+  background-color: #2563eb;
+}
+
+/* OR divider */
+.or-divider {
+  text-align: center;
+  margin: 1rem 0;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.register-container.dark-mode .or-divider {
+  color: #9ca3af;
+}
+
+/* Google Button */
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.register-container.dark-mode .google-btn {
+  background-color: #4b5563;
+  border-color: #6b7280;
+  color: #f3f4f6;
+}
+
+.google-btn:hover {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Google Icon */
+.google-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* Register link */
+.register-text {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.register-container.dark-mode .register-text {
+  color: #9ca3af;
+}
+
+.register-text button {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.register-text button:hover {
+  color: #2563eb;
+}
+
+/* Dark/light toggle */
+.theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  background-color: #e5e7eb;
+  color: #111827;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.register-container.dark-mode .theme-toggle {
+  background-color: #4b5563;
+  color: #f3f4f6;
+}
+
+.theme-toggle:hover {
+  opacity: 0.9;
+}

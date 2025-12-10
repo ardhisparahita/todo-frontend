@@ -1,22 +1,55 @@
 import { axiosInstance } from "../lib/axios";
 
-interface PayloadData {
+interface LoginPayload {
   usernameOrEmail: string;
   password: string;
 }
 
 export const useLogin = () => {
-  const login = async (payload: PayloadData) => {
+  // ✅ LOGIN MANUAL
+  const login = async (payload: LoginPayload) => {
     try {
       const response = await axiosInstance.post("/api/auth/login", payload);
-      // Simpan token ke localStorage
-      localStorage.setItem("token", response.data.token);
-      return response.data;
+
+      const { token, user } = response.data;
+
+      if (!token) {
+        throw new Error("Token tidak ditemukan dari server");
+      }
+
+      // ✅ Simpan token
+      localStorage.setItem("token", token);
+
+      return { token, user };
     } catch (error: any) {
-      // Lempar error agar bisa ditangkap di component
-      throw new Error(error.response?.data?.message || "Login failed");
+      throw new Error(error.response?.data?.message || "Login gagal");
     }
   };
 
-  return { login };
+  // ✅ LOGIN DARI GOOGLE REDIRECT (?token=xxx)
+  const loginWithGoogleToken = (token: string) => {
+    if (!token) {
+      throw new Error("Token Google tidak valid");
+    }
+
+    localStorage.setItem("token", token);
+  };
+
+  // ✅ LOGOUT
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
+
+  // ✅ CEK SUDAH LOGIN ATAU BELUM
+  const isAuthenticated = () => {
+    return !!localStorage.getItem("token");
+  };
+
+  return {
+    login,
+    loginWithGoogleToken,
+    logout,
+    isAuthenticated,
+  };
 };
