@@ -6,6 +6,7 @@ import CategoryForm from "../components/CategoryForm";
 import CategoryGrid from "../components/CategoryGrid";
 import { useCategory } from "../api/useCategory";
 import { useTodo } from "../api/useTodo";
+import "./../styles/todopage.css";
 
 interface TokenPayload {
   id: number;
@@ -41,7 +42,7 @@ const TodoPage = () => {
   const [categoryError, setCategoryError] = useState("");
   const [errorTrigger, setErrorTrigger] = useState(false);
 
-  // 🔥 Ambil token dan decode nama user
+  // Ambil token dan decode nama user
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -91,16 +92,8 @@ const TodoPage = () => {
   };
 
   return (
-    <div
-      style={{
-        padding: "2rem",
-        fontFamily: "Arial, sans-serif",
-        backgroundColor: darkMode ? "#121212" : "#f5f5f5",
-        minHeight: "100vh",
-        color: darkMode ? "#fff" : "#333",
-      }}
-    >
-      {/* ✅ Header dengan Hallo, username! */}
+    <div className={`todo-page ${darkMode ? "dark" : "light"}`}>
+      {/* Header */}
       <Header
         username={username}
         timeGreeting={timeGreeting}

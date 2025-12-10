@@ -1,0 +1,147 @@
+.todo-page {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.todo-page.light {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.todo-page.dark {
+  background-color: #121212;
+  color: #fff;
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+}
+
+.header .dark-toggle {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  border: none;
+  border-radius: 0.3rem;
+  color: #fff;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.header .dark-toggle:hover {
+  background-color: #0056b3;
+}
+
+/* ===== Category Form ===== */
+.category-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.category-form input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.category-form input.dark {
+  background-color: #1e1e1e;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.category-form button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  background-color: #28a745;
+  color: #fff;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.category-form button:hover {
+  background-color: #218838;
+}
+
+.category-error {
+  color: #dc3545;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+  min-height: 1.2rem; /* agar tidak bergeser saat error muncul */
+}
+
+/* ===== Category Grid ===== */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.category-card {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.category-card.dark {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+.category-card h3 {
+  margin-top: 0;
+}
+
+.todo-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.5rem;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #eee;
+  transition: color 0.3s;
+}
+
+.todo-item.dark {
+  border-bottom: 1px solid #444;
+}
+
+.todo-item.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.todo-item button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.todo-item button:hover {
+  color: #a71d2a;
+}
