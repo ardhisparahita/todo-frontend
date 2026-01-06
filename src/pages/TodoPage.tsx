@@ -42,7 +42,6 @@ const TodoPage = () => {
   const [categoryError, setCategoryError] = useState("");
   const [errorTrigger, setErrorTrigger] = useState(false);
 
-  // Ambil token dan decode nama user
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -93,7 +92,6 @@ const TodoPage = () => {
 
   return (
     <div className={`todo-page ${darkMode ? "dark" : "light"}`}>
-      {/* Header */}
       <Header
         username={username}
         timeGreeting={timeGreeting}
@@ -101,7 +99,6 @@ const TodoPage = () => {
         setDarkMode={setDarkMode}
       />
 
-      {/* Category Form */}
       <CategoryForm
         newCategory={newCategory}
         setNewCategory={setNewCategory}
@@ -111,7 +108,6 @@ const TodoPage = () => {
         errorTrigger={errorTrigger}
       />
 
-      {/* Category & Todo Grid */}
       <CategoryGrid
         categories={categories}
         toggleTodoStatus={toggleTodoStatus}

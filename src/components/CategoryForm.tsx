@@ -7,7 +7,6 @@ interface CategoryFormProps {
   categoryError: string;
   darkMode: boolean;
 
-  // trigger untuk paksa rerender input saat error muncul
   errorTrigger: boolean;
 }
 
@@ -31,7 +30,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
     >
       <div style={{ display: "flex", gap: "0.5rem" }}>
         <input
-          key={errorTrigger ? "error" : "no-error"} // ✅ key string agar valid
+          key={errorTrigger ? "error" : "no-error"}
           type="text"
           placeholder="Add new category"
           value={newCategory}

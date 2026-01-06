@@ -66,13 +66,11 @@ const LoginPage = () => {
   };
 
   const handleGoogleLogin = () => {
-    // Redirect ke endpoint Google OAuth
     window.location.href = "http://localhost:8000/api/auth/google";
   };
 
   return (
     <div className={darkMode ? "dark-mode" : "light-mode"}>
-      {/* Toggle Dark/Light Mode */}
       <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
         {darkMode ? "Light Mode" : "Dark Mode"}
       </button>
@@ -116,10 +114,8 @@ const LoginPage = () => {
             </button>
           </form>
 
-          {/* Divider */}
           <div className="or-divider">OR</div>
 
-          {/* Login with Google */}
           <button className="google-btn" onClick={handleGoogleLogin}>
             <span className="google-icon">
               <svg

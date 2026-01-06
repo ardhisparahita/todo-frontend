@@ -15,10 +15,8 @@ const LoginSuccess = () => {
       return;
     }
 
-    // simpan token ke localStorage
     loginWithGoogleToken(token);
 
-    // redirect otomatis ke /home
     navigate("/home");
   }, []);
 

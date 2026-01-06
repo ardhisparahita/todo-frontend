@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from "react-router";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-// import HomePage from './pages/HomePage'
 import TodoPage from "./pages/TodoPage";
 import ProtectedRoute from "./pages/ProtectedRoutes";
 import LoginSuccess from "./pages/LoginSuccess";

@@ -6,7 +6,6 @@ interface LoginPayload {
 }
 
 export const useLogin = () => {
-  // ✅ LOGIN MANUAL
   const login = async (payload: LoginPayload) => {
     try {
       const response = await axiosInstance.post("/api/auth/login", payload);
@@ -17,7 +16,6 @@ export const useLogin = () => {
         throw new Error("Token tidak ditemukan dari server");
       }
 
-      // ✅ Simpan token
       localStorage.setItem("token", token);
 
       return { token, user };
@@ -26,7 +24,6 @@ export const useLogin = () => {
     }
   };
 
-  // ✅ LOGIN DARI GOOGLE REDIRECT (?token=xxx)
   const loginWithGoogleToken = (token: string) => {
     if (!token) {
       throw new Error("Token Google tidak valid");
@@ -35,13 +32,11 @@ export const useLogin = () => {
     localStorage.setItem("token", token);
   };
 
-  // ✅ LOGOUT
   const logout = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
   };
 
-  // ✅ CEK SUDAH LOGIN ATAU BELUM
   const isAuthenticated = () => {
     return !!localStorage.getItem("token");
   };

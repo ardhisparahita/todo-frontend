@@ -49,7 +49,6 @@ const RegisterPage = () => {
     setLoading(true);
     try {
       const res = await register(registerData);
-      // Simpan token jika backend mengembalikan JWT
       localStorage.setItem("token", res.accessToken);
       navigate("/home");
     } catch (err: any) {

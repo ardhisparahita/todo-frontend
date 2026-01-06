@@ -1,4 +1,3 @@
-// src/api/useTodo.ts
 import { useState, useEffect } from "react";
 import { axiosInstance } from "../lib/axios";
 import { CategoryTodos } from "./useCategory";
@@ -18,7 +17,6 @@ export const useTodo = (
     [key: number]: { title: string; description: string };
   }>({});
 
-  // Fetch semua todos sekali ketika categories berubah
   useEffect(() => {
     if (categories.length === 0) return;
 
@@ -28,7 +26,9 @@ export const useTodo = (
       try {
         const updatedCategories = await Promise.all(
           categories.map(async (cat) => {
-            const res = await axiosInstance.get(`/api/categories/${cat.id}/tasks`);
+            const res = await axiosInstance.get(
+              `/api/categories/${cat.id}/tasks`
+            );
             return { ...cat, todos: res.data.data || [] };
           })
         );
@@ -42,7 +42,7 @@ export const useTodo = (
     fetchTodos();
 
     return () => {
-      isMounted = false; // untuk cleanup jika component unmount
+      isMounted = false;
     };
   }, [categories.length, setCategories]);
 
@@ -51,10 +51,13 @@ export const useTodo = (
     if (!todoInput || !todoInput.title.trim()) return;
 
     try {
-      const res = await axiosInstance.post(`/api/categories/${categoryId}/tasks`, {
-        title: todoInput.title,
-        description: todoInput.description,
-      });
+      const res = await axiosInstance.post(
+        `/api/categories/${categoryId}/tasks`,
+        {
+          title: todoInput.title,
+          description: todoInput.description,
+        }
+      );
 
       setCategories((prev) =>
         prev.map((cat) =>
@@ -64,7 +67,10 @@ export const useTodo = (
         )
       );
 
-      setNewTodos((prev) => ({ ...prev, [categoryId]: { title: "", description: "" } }));
+      setNewTodos((prev) => ({
+        ...prev,
+        [categoryId]: { title: "", description: "" },
+      }));
     } catch (err) {
       console.error("Failed to add todo:", err);
     }
@@ -104,7 +110,9 @@ export const useTodo = (
 
   const deleteTodo = async (categoryId: number, todoId: number) => {
     try {
-      await axiosInstance.delete(`/api/categories/${categoryId}/tasks/${todoId}`);
+      await axiosInstance.delete(
+        `/api/categories/${categoryId}/tasks/${todoId}`
+      );
       setCategories((prev) =>
         prev.map((cat) =>
           cat.id === categoryId
@@ -117,5 +125,5 @@ export const useTodo = (
     }
   };
 
-  return { newTodos, setNewTodos, addTodo, toggleTodoStatus, deleteTodo};
+  return { newTodos, setNewTodos, addTodo, toggleTodoStatus, deleteTodo };
 };
