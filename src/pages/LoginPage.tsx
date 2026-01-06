@@ -66,7 +66,8 @@ const LoginPage = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:8000/api/auth/google";
+    window.location.href =
+      "https://todo-backend-production-4634.up.railway.app/api/auth/google";
   };
 
   return (
